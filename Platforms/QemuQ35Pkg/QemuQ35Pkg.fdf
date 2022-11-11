@@ -498,7 +498,6 @@ INF  MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 INF  MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
 INF  DfciPkg/Application/DfciMenu/DfciMenu.inf
 INF  MsGraphicsPkg/PrintScreenLogger/PrintScreenLogger.inf
-INF  SecurityPkg/Hash2DxeCrypto/Hash2DxeCrypto.inf
 INF  MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 INF  SetupDataPkg/ConfProfileMgrDxe/ConfProfileMgrDxe.inf
 
@@ -531,6 +530,12 @@ INF PrmPkg/PrmLoaderDxe/PrmLoaderDxe.inf
 # PRM SSDT Installation Driver
 INF PrmPkg/PrmSsdtInstallDxe/PrmSsdtInstallDxe.inf
 
+# TODO - for development only
+# cBMR DXE driver
+FILE DRIVER = 6f520CDA-4747-4B9F-A72A-36CE31322F7A {
+  SECTION PE32 = OemPkg/CloudBMR/Driver/amd64fre/cbmr_driver.efi
+}
+
 FILE FREEFORM = PCD(gDfciPkgTokenSpaceGuid.PcdDfciTimerFile) {
     SECTION RAW = DfciPkg/Include/Resources/DfciWorking.bmp
 }
@@ -556,6 +561,12 @@ FILE FREEFORM = PCD(gZeroTouchPkgTokenSpaceGuid.PcdZeroTouchCertificateFile) {
     SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/X64/Shell.efi
     SECTION UI= "EdkShell"
   }
+
+  # cBMR application company logo bitmap image.
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdCloudBMRCompanyLogoFile) {
+    SECTION RAW = OemPkg/CloudBMR/Application/CbmrSampleUIApp/Resources/WindowsLogo.bmp
+  }
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
     SECTION RAW = OemPkg/FrontPage/Resources/BootLogo.bmp
     SECTION UI = "Logo"

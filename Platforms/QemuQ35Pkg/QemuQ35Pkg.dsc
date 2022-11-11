@@ -274,6 +274,9 @@
   DfciXmlPermissionSchemaSupportLib |DfciPkg/Library/DfciXmlPermissionSchemaSupportLib/DfciXmlPermissionSchemaSupportLib.inf
   DfciSettingChangedNotificationLib |DfciPkg/Library/DfciSettingChangedNotificationLib/DfciSettingChangedNotificationLibNull.inf
 
+  # Cloud BMR Libraries
+  CbmrSupportLib                    |OemPkg/Library/CbmrSupportLib/CbmrSupportLib.inf
+
    #XML libraries
   XmlTreeQueryLib                   |XmlSupportPkg/Library/XmlTreeQueryLib/XmlTreeQueryLib.inf
   XmlTreeLib                        |XmlSupportPkg/Library/XmlTreeLib/XmlTreeLib.inf
@@ -313,6 +316,7 @@
   [LibraryClasses.X64]
     BaseCryptLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
     TlsLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
+    DebugLib|MdePkg/Library/UefiDebugLibDebugPortProtocol/UefiDebugLibDebugPortProtocol.inf
 
   [LibraryClasses.X64.DXE_SMM_DRIVER]
     BaseCryptLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/SmmCryptLib.inf
@@ -699,6 +703,7 @@
   Tpm12DeviceLib|SecurityPkg/Library/Tpm12DeviceLibTcg/Tpm12DeviceLibTcg.inf
   Tpm2DeviceLib|SecurityPkg/Library/Tpm2DeviceLibTcg2/Tpm2DeviceLibTcg2.inf
 !endif
+  Hash2CryptoLib |SecurityPkg/Library/DxeHash2CryptoLib/DxeHash2CryptoLib.inf
 
 #########################################
 # SMM Libraries
@@ -1185,6 +1190,8 @@ PlatformSmmProtectionsTestLib|UefiTestingPkg/Library/PlatformSmmProtectionsTestL
     <LibraryClasses>
       NULL|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
       DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+      NULL|MsCorePkg/Library/DebugPortProtocolInstallLib/DebugPortProtocolInstallLib.inf
+      DebugLib|MsCorePkg/Library/DxeDebugLibRouter/DxeDebugLibRouter.inf
   }
 
   MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
@@ -1393,6 +1400,9 @@ PlatformSmmProtectionsTestLib|UefiTestingPkg/Library/PlatformSmmProtectionsTestL
       gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0xFF
   }
 
+  OemPkg/CloudBMR/Application/CbmrSampleUIApp/CbmrApp.inf
+  OemPkg/CloudBMR/Application/CbmrSampleShellApp/CbmrApp.inf
+
   PolicyServicePkg/PolicyService/Dxe/PolicyDxe.inf
   SetupDataPkg/ConfDataSettingProvider/ConfDataSettingProvider.inf {
     <PcdsFixedAtBuild>
@@ -1446,7 +1456,6 @@ PlatformSmmProtectionsTestLib|UefiTestingPkg/Library/PlatformSmmProtectionsTestL
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
   MsGraphicsPkg/PrintScreenLogger/PrintScreenLogger.inf
-  SecurityPkg/Hash2DxeCrypto/Hash2DxeCrypto.inf
 
   ## Unit Tests
   !if $(BUILD_UNIT_TESTS) == TRUE
