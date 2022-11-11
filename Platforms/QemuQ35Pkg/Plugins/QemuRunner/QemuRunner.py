@@ -69,7 +69,8 @@ class QemuRunner(uefi_helper_plugin.IUefiHelperPlugin):
         # Turn off S3 support
         args += " -global ICH9-LPC.disable_s3=1"
         # turn off network
-        args += " -net none"
+        args += " -nic user,model=virtio-net-pci"
+        #args += " -net none"
         # Mount disk with startup.nsh
         if os.path.isfile(VirtualDrive):
             args += f" -hdd {VirtualDrive}"
